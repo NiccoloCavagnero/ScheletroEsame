@@ -1,5 +1,6 @@
 package scheletri;
 
+import java.awt.Graphics;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +31,14 @@ public class Model {
 	
 	public void buildGraph() {
 		graph = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
+		
+		Graphs.addAllVertices(graph, );
+		
+		
+		
+		
+		System.out.println("#vertici: "graph.vertexSet().size());
+		System.out.println("#archi: "graph.edgeSet().size());
 	}
 	
 	public void init() {
@@ -43,6 +52,7 @@ public class Model {
 		
 		if () {
 			best = new ArrayList<>(partial);
+			System.out.println(best.size());
 			return;
 		}
 		
