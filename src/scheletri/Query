@@ -31,14 +31,30 @@
 // Selezionare i distretti in cui è avvenuto un tipo di crimine
 SELECT DISTINCT(district_id)
 FROM events
-WHERE YEAR(reported_date) = 2015 AND offense_category_id = 'traffic-accident'
+WHERE YEAR(reported_date) = ? AND offense_category_id = ?
 
-//Selezionare il numero di distretti diversi in cui si sono verificati due tipi di crimine
+//Selezionare il numero di distretti diversi in cui si sono verificati due categorie di crimine
 SELECT COUNT(DISTINCT(e1.district_id))
 FROM events e1, events e2 
-WHERE  e1.district_id = e2.district_id AND YEAR(e1.reported_date) = 2015 
-AND YEAR(e1.reported_date) = YEAR(e2.reported_date) AND e1.offense_category_id = 'all-other-crimes' 
-AND e2.offense_category_id="traffic-accident"
+WHERE  e1.district_id = e2.district_id AND YEAR(e1.reported_date) = ? 
+AND YEAR(e1.reported_date) = YEAR(e2.reported_date) AND e1.offense_category_id = ? 
+AND e2.offense_category_id=?
+
+//Selezionare le triple id1, id2, peso 
+SELECT e1.offense_type_id AS id1, e2.offense_type_id AS id2, COUNT(DISTINCT(e1.district_id)) AS cnt
+FROM events e1, events e2
+WHERE e1.district_id = e2.district_id 
+AND YEAR(e1.reported_date)= ?
+AND YEAR(e1.reported_date)=YEAR(e2.reported_date) 
+AND e1.offense_category_id = ?
+AND e1.offense_category_id = e2.offense_category_id 
+AND id1 > id2
+GROUP BY id1, id2
+
+//Selezionare tutte le categorie
+SELECT DISTINCT(offense_category_id)
+FROM events
+WHERE YEAR(reported_date) = ?
 
 
 	                 
