@@ -55,6 +55,7 @@ GROUP BY id1, id2
 SELECT DISTINCT(offense_category_id)
 FROM events
 WHERE YEAR(reported_date) = ?
+ORDER BY offense_category_id ASC
 
 
 	                 
