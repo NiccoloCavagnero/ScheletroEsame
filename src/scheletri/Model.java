@@ -14,7 +14,7 @@ public class Model {
 	
 	private EventsDao dao;
 	private Map<Integer,District> dMap;
-	private Graph<District,DefaultWeightedEdge> graph;
+	private Graph<String,DefaultWeightedEdge> graph;
 	
 	// Recursion
 	private List<E> best;

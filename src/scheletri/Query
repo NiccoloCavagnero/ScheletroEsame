@@ -27,5 +27,19 @@
 "SELECT DISTINCT year(reported_date) AS year\n " + 
 "FROM events\n " + 
 "ORDER BY year(reported_date) ASC" ;
+
+// Selezionare i distretti in cui è avvenuto un tipo di crimine
+SELECT DISTINCT(district_id)
+FROM events
+WHERE YEAR(reported_date) = 2015 AND offense_category_id = 'traffic-accident'
+
+//Selezionare il numero di distretti diversi in cui si sono verificati due tipi di crimine
+SELECT COUNT(DISTINCT(e1.district_id))
+FROM events e1, events e2 
+WHERE  e1.district_id = e2.district_id AND YEAR(e1.reported_date) = 2015 
+AND YEAR(e1.reported_date) = YEAR(e2.reported_date) AND e1.offense_category_id = 'all-other-crimes' 
+AND e2.offense_category_id="traffic-accident"
+
+
 	                 
 	                 
